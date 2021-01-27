@@ -1,5 +1,7 @@
-package com.ed_trade.ed_tradeserver_rest;
+package com.ed_trade.ed_tradeserver_rest.main;
 
+import com.ed_trade.ed_tradeserver_rest.data.JSONFinder;
+import com.ed_trade.ed_tradeserver_rest.model.Faction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +23,9 @@ public class EdTradeServerRestApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+//        JSONFinder.findByURL("https://eddb.io/archive/v6/stations.jsonl");
+        System.out.println(System.getProperty("user.dir"));
+
         String sql = "SELECT * FROM TestDB.dbo.factions AS f WHERE f.allegiance='Alliance'";
         List<Faction> factions = jdbcTemp.query(sql, BeanPropertyRowMapper.newInstance(Faction.class));
 
