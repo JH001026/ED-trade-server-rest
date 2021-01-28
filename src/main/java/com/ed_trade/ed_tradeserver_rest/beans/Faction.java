@@ -1,4 +1,4 @@
-package com.ed_trade.ed_tradeserver_rest.model;
+package com.ed_trade.ed_tradeserver_rest.beans;
 
 
 public class Faction {
