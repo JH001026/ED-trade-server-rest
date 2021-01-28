@@ -1,0 +1,45 @@
+
+-- This example query that would create a new table in the database.
+
+IF OBJECT_ID('TestDB.dbo.factions') IS NOT NULL
+    DROP TABLE TestDB.dbo.factions
+GO
+
+CREATE TABLE TestDB.dbo.factions
+(
+    id INT NOT NULL,
+    name VARCHAR(100),
+    updated_at INT,
+    government_id INT,
+    government VARCHAR(100),
+    allegegiance_id int,
+	allegiance VARCHAR(100),
+	home_system_id INT,
+	is_player_faction INT
+)
+GO
+
+
+-- This example query would fill that table with the data from a CSV file
+
+BULK INSERT TestDB.dbo.factions
+FROM 'C:\Users\Jeroe\Downloads\factions.csv'
+WITH
+(
+	FIRSTROW = 2,
+	FORMAT = 'CSV',
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '0x0a'
+)
+GO
+
+
+--This example query would read json into a 2d table
+
+Declare @JSON varchar(max)
+
+SELECT @JSON = BulkColumn
+FROM OPENROWSET (BULK 'C:\Users\Jeroe\IdeaProjects\ED-trade-server-rest\data\json\modules.json', SINGLE_CLOB) as j
+
+SELECT * FROM OPENJSON (@JSON)
+WITH(id int,group_id int,class int) as Modules

@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+/data/json/stations.json
+/data/json/systems_populated.json
+/data/json/modules.json
+/data/json/commodities.json
