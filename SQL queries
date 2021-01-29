@@ -58,13 +58,11 @@ USE EDDB
 
 IF OBJECT_ID('EDDB.dbo.modules') IS NOT NULL
     DROP TABLE EDDB.dbo.modules
-GO
 
 CREATE TABLE EDDB.dbo.modules
 (
 [id] INT NOT NULL,
 [group_id] INT NOT NULL,
-[class] INT NOT NULL,
 [price] FLOAT,
 [name] VARCHAR(100),
 [ed_id] INT,
@@ -81,7 +79,6 @@ INSERT INTO EDDB.dbo.modules
 (
 [id],
 [group_id],
-[class],
 [price],
 [name],
 [ed_id],
@@ -91,7 +88,6 @@ SELECT * FROM OPENJSON (@JSON)
 WITH(
 [id] int,
 [group_id] int,
-[class] int,
 [price] float,
 [name] VARCHAR(100),
 [ed_id] int,

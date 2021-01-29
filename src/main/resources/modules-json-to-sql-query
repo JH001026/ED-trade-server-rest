@@ -1,0 +1,39 @@
+USE EDDB
+
+IF OBJECT_ID('EDDB.dbo.modules') IS NOT NULL
+    DROP TABLE EDDB.dbo.modules
+
+CREATE TABLE EDDB.dbo.modules
+(
+[id] INT NOT NULL,
+[group_id] INT NOT NULL,
+[price] FLOAT,
+[name] VARCHAR(100),
+[ed_id] INT,
+[ed_symbol] VARCHAR(100)
+)
+
+
+Declare @JSON varchar(max)
+
+SELECT @JSON = BulkColumn
+FROM OPENROWSET (BULK 'C:\Users\Jeroe\IdeaProjects\ED-trade-server-rest\data\json\modules.json', SINGLE_CLOB) as j
+
+INSERT INTO EDDB.dbo.modules
+(
+[id],
+[group_id],
+[price],
+[name],
+[ed_id],
+[ed_symbol]
+)
+SELECT * FROM OPENJSON (@JSON)
+WITH(
+[id] int,
+[group_id] int,
+[price] float,
+[name] VARCHAR(100),
+[ed_id] int,
+[ed_symbol] VARCHAR(100)
+) as Modules

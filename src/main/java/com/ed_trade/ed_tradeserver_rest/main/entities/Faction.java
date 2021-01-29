@@ -1,8 +1,13 @@
-package com.ed_trade.ed_tradeserver_rest.beans;
+package com.ed_trade.ed_tradeserver_rest.main.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "factions")
 public class Faction {
-
+    @Id
     private int id;
     private String name;
     private int updated_at;
