@@ -28,9 +28,9 @@ public class EdTradeServerRestApplication implements CommandLineRunner {
         new Setup().setupAll(false, jdbcTemplate);
         //ToDo put the JSON into the SQL at setup, query needs to be separate from repositories
 
-        //Standard function
-        List<Listing> listings = listingRepo.findAll();
-        listings.forEach(System.out :: println);
+//        //Standard function
+//        List<Listing> listings = listingRepo.findAll();
+//        listings.forEach(System.out :: println);
 
         //Custom function
         List<Listing> l = listingRepo.findListingsWithId(155);

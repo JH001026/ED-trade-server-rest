@@ -36,6 +36,7 @@ public class Setup {
         }
 
         jsonToSQL("modules-json-to-sql-query");
+        jsonToSQL("part2");
         System.out.println(System.getProperty("user.dir"));
 
     }

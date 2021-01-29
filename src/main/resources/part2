@@ -1,0 +1,23 @@
+Declare @JSON varchar(max)
+
+SELECT @JSON = BulkColumn
+FROM OPENROWSET (BULK 'C:\Users\Jeroe\IdeaProjects\ED-trade-server-rest\data\json\modules.json', SINGLE_CLOB) as j
+
+INSERT INTO EDDB.dbo.modules
+(
+[id],
+[group_id],
+[price],
+[name],
+[ed_id],
+[ed_symbol]
+)
+SELECT * FROM OPENJSON (@JSON)
+WITH(
+[id] int,
+[group_id] int,
+[price] float,
+[name] VARCHAR(100),
+[ed_id] int,
+[ed_symbol] VARCHAR(100)
+) as Modules
